@@ -9,17 +9,17 @@ const minutes = clock.querySelector(".minutes");
 const seconds = clock.querySelector(".seconds");
 const savedTime = localStorage.getItem("countdown") || false;
 
-if(savedTime) {
-    startClock(savedTime);
-    let dated = new Date(savedTime);
-    endDate.valueAsDate = dated;
+if (savedTime) {
+  startClock(savedTime);
+  let dated = new Date(savedTime);
+  endDate.valueAsDate = dated;
 }
 
 endDate.addEventListener("change", function (e) {
   e.preventDefault();
   clearInterval(timeinterval);
   const endDateTemp = new Date(this.value);
-  localStorage.setItem('countdown', endDateTemp);
+  localStorage.setItem("countdown", endDateTemp);
   startClock(endDateTemp);
 });
 
