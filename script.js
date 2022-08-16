@@ -1,4 +1,4 @@
-let countdown;
+let countDown;
 let timeinterval;
 const endDate = document.querySelector('input[name="endDate"]');
 const clock = document.querySelector("#clock");
@@ -7,11 +7,19 @@ const days = clock.querySelector(".days");
 const hours = clock.querySelector(".hours");
 const minutes = clock.querySelector(".minutes");
 const seconds = clock.querySelector(".seconds");
+const savedTime = localStorage.getItem("countdown") || false;
+
+if(savedTime) {
+    startClock(savedTime);
+    let dated = new Date(savedTime);
+    endDate.valueAsDate = dated;
+}
 
 endDate.addEventListener("change", function (e) {
   e.preventDefault();
   clearInterval(timeinterval);
   const endDateTemp = new Date(this.value);
+  localStorage.setItem('countdown', endDateTemp);
   startClock(endDateTemp);
 });
 
